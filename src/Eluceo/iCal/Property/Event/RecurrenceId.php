@@ -23,8 +23,6 @@ use Eluceo\iCal\Property\ValueInterface;
  */
 class RecurrenceId extends Property
 {
-    const PROPERTY_NAME = 'RECURRENCE-ID';
-
     /**
      * The effective range of recurrence instances from the instance
      * specified by the recurrence identifier specified by the property.
@@ -48,15 +46,14 @@ class RecurrenceId extends Property
 
     public function __construct(\DateTime $dateTime = null)
     {
-        $this->parameterBag = new ParameterBag();
-        if (isset($dateTime)) {
-            $this->dateTime = $dateTime;
-        }
+        $this->dateTime = $dateTime;
+        parent::__construct('RECURRENCE-ID', null);
     }
 
     public function applyTimeSettings($noTime = false, $useTimezone = false, $useUtc = false)
     {
-        $params = DateUtil::getDefaultParams($this->dateTime, $noTime, $useTimezone, $useUtc);
+        $params = DateUtil::getDefaultParams($this->dateTime, $noTime, $useTimezone);
+
         foreach ($params as $name => $value) {
             $this->parameterBag->setParam($name, $value);
         }
@@ -66,34 +63,6 @@ class RecurrenceId extends Property
         }
 
         $this->setValue(DateUtil::getDateString($this->dateTime, $noTime, $useTimezone, $useUtc));
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getDatetime()
-    {
-        return $this->dateTime;
-    }
-
-    /**
-     * @param \DateTime $dateTime
-     *
-     * @return \Eluceo\iCal\Property\Event\RecurrenceId
-     */
-    public function setDatetime(\DateTime $dateTime)
-    {
-        $this->dateTime = $dateTime;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getRange()
-    {
-        return $this->range;
     }
 
     /**
@@ -107,9 +76,16 @@ class RecurrenceId extends Property
     }
 
     /**
-     * Get all unfolded lines.
-     *
+     * @param \DateTime $dateTime
+     */
+    public function setDateTime(\DateTime $dateTime)
+    {
+        $this->dateTime = $dateTime;
+    }
+
+    /**
      * @return array
+     * @throws \Exception
      */
     public function toLines()
     {
@@ -118,13 +94,5 @@ class RecurrenceId extends Property
         } else {
             return parent::toLines();
         }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getName()
-    {
-        return self::PROPERTY_NAME;
     }
 }
