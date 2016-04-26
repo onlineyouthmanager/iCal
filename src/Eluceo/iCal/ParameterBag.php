@@ -45,6 +45,7 @@ class ParameterBag
 
     /**
      * @param $name
+     *
      * @return mixed
      */
     public function getParam($name)

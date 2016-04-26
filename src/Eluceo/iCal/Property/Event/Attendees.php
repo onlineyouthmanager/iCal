@@ -72,27 +72,6 @@ class Attendees extends Property
     }
 
     /**
-     * @param string $name
-     * @param mixed  $value
-     *
-     * @throws \BadMethodCallException
-     */
-    public function setParam($name, $value)
-    {
-        throw new \BadMethodCallException('Cannot call setParam on Attendees Property');
-    }
-
-    /**
-     * @param $name
-     *
-     * @throws \BadMethodCallException
-     */
-    public function getParam($name)
-    {
-        throw new \BadMethodCallException('Cannot call getParam on Attendees Property');
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function getName()

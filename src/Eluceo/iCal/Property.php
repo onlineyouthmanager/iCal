@@ -64,8 +64,7 @@ class Property
         $line = $this->getName();
 
         // Adding params
-        //@todo added check for $this->parameterBag because doctrine/orm proxies won't execute constructor - ok?
-        if ($this->parameterBag && $this->parameterBag->hasParams()) {
+        if ($this->parameterBag->hasParams()) {
             $line .= ';' . $this->parameterBag->toString();
         }
 
@@ -86,34 +85,11 @@ class Property
     }
 
     /**
-     * @param string $name
-     * @param mixed  $value
-     *
+     * @param $value
      * @return $this
+     * @throws \InvalidArgumentException
      */
-    public function setParam($name, $value)
-    {
-        $this->parameterBag->setParam($name, $value);
-
-        return $this;
-    }
-
-    /**
-     * @param $name
-     */
-    public function getParam($name)
-    {
-        return $this->parameterBag->getParam($name);
-    }
-
-    /**
-     * @param mixed $value
-     *
-     * @return $this
-     *
-     * @throws \Exception
-     */
-    public function setValue($value)
+    protected function setValue($value)
     {
         if (is_scalar($value)) {
             $this->value = new StringValue($value);
@@ -121,13 +97,10 @@ class Property
             $this->value = new ArrayValue($value);
         } else {
             if (!$value instanceof ValueInterface) {
-                throw new \Exception('The value must implement the ValueInterface.');
-            } else {
-                $this->value = $value;
+                throw new \InvalidArgumentException('The value must implement the ValueInterface.');
             }
+            $this->value = $value;
         }
-
-        return $this;
     }
 
     /**
