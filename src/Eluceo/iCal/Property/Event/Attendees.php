@@ -18,8 +18,6 @@ class Attendees extends Property
     /** @var Property[] */
     protected $attendees = [];
 
-    const PROPERTY_NAME = 'ATTENDEES';
-
     public function __construct()
     {
         // Overwrites constructor functionality of Property
@@ -34,18 +32,6 @@ class Attendees extends Property
     public function add($value, $params = [])
     {
         $this->attendees[] = new Property('ATTENDEE', $value, $params);
-
-        return $this;
-    }
-
-    /**
-     * @param Property[] $value
-     *
-     * @return $this
-     */
-    public function setValue($value)
-    {
-        $this->attendees = $value;
 
         return $this;
     }
@@ -68,6 +54,6 @@ class Attendees extends Property
      */
     public function getName()
     {
-        return self::PROPERTY_NAME;
+        return 'ATTENDEES';
     }
 }

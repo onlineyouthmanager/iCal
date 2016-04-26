@@ -15,8 +15,7 @@ use Eluceo\iCal\Property\ValueInterface;
 use Eluceo\iCal\Util\PropertyValueUtil;
 
 /**
- * Class Description
- * Alows new line charectars to be in the description.
+ * Allows new line charectars to be in the description.
  */
 class Description implements ValueInterface
 {
@@ -25,42 +24,21 @@ class Description implements ValueInterface
      *
      * @var string
      */
-    protected $value;
-
-    public function __construct($value)
-    {
-        $this->value = $value;
-    }
-
-    /**
-     * Return the value of the Property as an escaped string.
-     *
-     * Escape values as per RFC 2445. See http://www.kanzaki.com/docs/ical/text.html
-     *
-     * @return string
-     */
-    public function getEscapedValue()
-    {
-        return PropertyValueUtil::escapeValue((string) $this->value);
-    }
+    private $escapedValue;
 
     /**
      * @param string $value
-     *
-     * @return $this
      */
-    public function setValue($value)
+    public function __construct($value)
     {
-        $this->value = $value;
-
-        return $this;
+        $this->escapedValue = PropertyValueUtil::escapeValue((string) $value);
     }
 
     /**
-     * @return string
+     * @inheritdoc
      */
-    public function getValue()
+    public function getEscapedValue()
     {
-        return $this->value;
+        return $this->escapedValue;
     }
 }
