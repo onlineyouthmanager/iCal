@@ -3,7 +3,9 @@ All notable changes to this project will be documented in this file.
 
 ## 1.x
 ### Removed
-- Method `Eluceo\iCal\Component\Calendar::addEvent()` was removed.
+- Method `Eluceo\iCal\Component\Calendar::addEvent()`.
+- Method `Eluceo\iCal\Component\Property::setParam()`.
+- Method `Eluceo\iCal\Component\Property::getParam()`.
 
 ## [0.10.0] - 2016-04-26
 ### Changed
