@@ -2,10 +2,16 @@
 All notable changes to this project will be documented in this file.
 
 ## 1.x
+### Changed
+- Require PHP >=5.6 (drop support for PHP 5.3, 5.4, 5.5)
+
 ### Removed
-- Method `Eluceo\iCal\Component\Calendar::addEvent()`.
-- Method `Eluceo\iCal\Component\Property::setParam()`.
-- Method `Eluceo\iCal\Component\Property::getParam()`.
+- Removed methods:
+    - `Eluceo\iCal\Component\Calendar::addEvent()`
+    - `Eluceo\iCal\Component\Property::setParam()`
+    - `Eluceo\iCal\Component\Property::getParam()`
+    - `Eluceo\iCal\Component\Property::getValue()`
+    - `Eluceo\iCal\Component\Property\Event\Attendees::getValue()`
 
 ## [0.10.0] - 2016-04-26
 ### Changed
