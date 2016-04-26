@@ -11,16 +11,16 @@
 
 namespace Eluceo\iCal;
 
+use Eluceo\iCal\Util\PropertyParameterValueUtil;
+
 class ParameterBag
 {
     /**
-     * The params.
-     *
      * @var array
      */
     protected $params;
 
-    public function __construct($params = [])
+    public function __construct(array $params = [])
     {
         $this->params = $params;
     }
@@ -31,32 +31,9 @@ class ParameterBag
      */
     public function setParam($name, $value)
     {
-        assert('is_string($name)', '$name parameter should be a string');
+        assert(is_string($name), '$name parameter should be a string');
 
         $this->params[$name] = $value;
-    }
-
-    public function hasParam($name)
-    {
-        assert('is_string($name)', '$name parameter should be a string');
-
-        return isset($this->params[$name]);
-    }
-
-    /**
-     * @param $name
-     *
-     * @return mixed
-     */
-    public function getParam($name)
-    {
-        assert('is_string($name)', '$name parameter should be a string');
-
-        if (!isset($this->params[$name])) {
-            throw new \InvalidArgumentException("There is no parameter named {$name}");
-        }
-
-        return $this->params[$name];
     }
 
     /**
@@ -80,8 +57,9 @@ class ParameterBag
             if (!is_array($paramValues)) {
                 $paramValues = [$paramValues];
             }
+
             foreach ($paramValues as $k => $v) {
-                $paramValues[$k] = $this->escapeParamValue($v);
+                $paramValues[$k] = PropertyParameterValueUtil::escapeParamValue($v);
             }
 
             if ('' != $line) {
@@ -92,26 +70,6 @@ class ParameterBag
         }
 
         return $line;
-    }
-
-    /**
-     * Returns an escaped string for a param value.
-     *
-     * @param string $value
-     *
-     * @return string
-     */
-    public function escapeParamValue($value)
-    {
-        $count = 0;
-        $value = str_replace('\\', '\\\\', $value);
-        $value = str_replace('"', '\"', $value, $count);
-        $value = str_replace("\n", '\\n', $value);
-        if (false !== strpos($value, ';') || false !== strpos($value, ',') || false !== strpos($value, ':') || $count) {
-            $value = '"' . $value . '"';
-        }
-
-        return $value;
     }
 
     /**

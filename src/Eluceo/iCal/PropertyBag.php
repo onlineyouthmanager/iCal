@@ -21,6 +21,8 @@ class PropertyBag implements \IteratorAggregate
     /**
      * Creates a new Property with $name, $value and $params.
      *
+     * @deprecated The property bag should not be used as a property factory. Use `$this->add` instead.
+     *
      * @param       $name
      * @param       $value
      * @param array $params
@@ -29,26 +31,7 @@ class PropertyBag implements \IteratorAggregate
      */
     public function set($name, $value, $params = [])
     {
-        $property         = new Property($name, $value, $params);
-        $this->elements[] = $property;
-
-        return $this;
-    }
-
-    /**
-     * @param string $name
-     *
-     * @return null|Property
-     */
-    public function get($name)
-    {
-        // Searching Property in elements-array
-        /** @var $property Property */
-        foreach ($this->elements as $property) {
-            if ($property->getName() == $name) {
-                return $property;
-            }
-        }
+        $this->add(new Property($name, $value, $params));
     }
 
     /**
@@ -62,16 +45,18 @@ class PropertyBag implements \IteratorAggregate
      */
     public function add(Property $property)
     {
-        // Property already exists?
-        if (null !== $this->get($property->getName())) {
-            throw new \Exception("Property with name '{$property->getName()}' already exists");
+        $name = $property->getName();
+
+        if (isset($this->elements[$name])) {
+            throw new \Exception("Property with name '{$name}' already exists");
         }
 
-        $this->elements[] = $property;
-
-        return $this;
+        $this->elements[$name] = $property;
     }
 
+    /**
+     * @return \ArrayObject
+     */
     public function getIterator()
     {
         return new \ArrayObject($this->elements);
