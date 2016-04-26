@@ -20,7 +20,7 @@ return Symfony\CS\Config\Config::create()
         'align_equals',
         'align_double_arrow',
         'unused_use',
-        'long_array_syntax',
+        'short_array_syntax',
     ))
     ->finder($finder)
 ;
