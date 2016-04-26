@@ -31,17 +31,31 @@ class ParameterBag
      */
     public function setParam($name, $value)
     {
+        assert('is_string($name)', '$name parameter should be a string');
+
         $this->params[$name] = $value;
+    }
+
+    public function hasParam($name)
+    {
+        assert('is_string($name)', '$name parameter should be a string');
+
+        return isset($this->params[$name]);
     }
 
     /**
      * @param $name
+     * @return mixed
      */
     public function getParam($name)
     {
-        if (array_key_exists($name, $this->params)) {
-            return $this->params[$name];
+        assert('is_string($name)', '$name parameter should be a string');
+
+        if (!isset($this->params[$name])) {
+            throw new \InvalidArgumentException("There is no parameter named {$name}");
         }
+
+        return $this->params[$name];
     }
 
     /**
@@ -60,6 +74,7 @@ class ParameterBag
     public function toString()
     {
         $line = '';
+
         foreach ($this->params as $param => $paramValues) {
             if (!is_array($paramValues)) {
                 $paramValues = array($paramValues);
