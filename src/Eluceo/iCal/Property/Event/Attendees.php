@@ -51,14 +51,6 @@ class Attendees extends Property
     }
 
     /**
-     * @return Property[]
-     */
-    public function getValue()
-    {
-        return $this->attendees;
-    }
-
-    /**
      * {@inheritdoc}
      */
     public function toLines()

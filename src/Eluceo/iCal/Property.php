@@ -106,14 +106,6 @@ class Property
     }
 
     /**
-     * @return mixed
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
      * @return string
      */
     public function getName()
