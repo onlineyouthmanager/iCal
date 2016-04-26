@@ -1,6 +1,10 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## 1.x
+### Removed
+- Method `Eluceo\iCal\Component\Calendar::addEvent()` was removed.
+
 ## [0.10.0] - 2016-04-26
 ### Changed
 - Use 'escapeValue' to escape the new line character. [#60](https://github.com/markuspoerschke/iCal/pull/60)
