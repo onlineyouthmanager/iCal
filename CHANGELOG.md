@@ -27,5 +27,6 @@ All notable changes to this project will be documented in this file.
 - **Breaking Change:** Changed signature of the ```Event::setOrganizer``` method. Now there is is only one parameter that must be an instance of ```Property\Organizer```.
 - Updated install section in README.md [#54](https://github.com/markuspoerschke/iCal/pull/53)
 
-[Unreleased]: https://github.com/markuspoerschke/iCal/compare/0.9.0...HEAD
+[Unreleased]: https://github.com/markuspoerschke/iCal/compare/0.10.0...1.x
+[0.10.0]: https://github.com/markuspoerschke/iCal/compare/0.9.0...0.10.0
 [0.9.0]: https://github.com/markuspoerschke/iCal/compare/0.8.0...0.8.0
