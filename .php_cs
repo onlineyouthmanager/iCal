@@ -21,6 +21,21 @@ return Symfony\CS\Config\Config::create()
         'align_double_arrow',
         'unused_use',
         'short_array_syntax',
+        'spaces_cast',
+        'single_quote',
+        'short_bool_cast',
+        'return',
+        'visibility',
+        'trailing_spaces',
+        'php_closing_tag',
+        'lowercase_keywords',
+        'lowercase_constants',
+        'linefeed',
+        'line_after_namespace',
+        'indentation',
+        'eof_ending',
+        'encoding',
+        'psr0'
     ))
     ->finder($finder)
 ;

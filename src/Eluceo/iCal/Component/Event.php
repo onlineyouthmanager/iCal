@@ -200,7 +200,7 @@ class Event extends Component
      * 
      * @var \DateTime[]
      */
-    protected $exDates = array();
+    protected $exDates = [];
 
     /**
      * @var RecurrenceId
@@ -262,12 +262,12 @@ class Event extends Component
                     new Property(
                         'X-APPLE-STRUCTURED-LOCATION',
                         'geo:' . $this->locationGeo,
-                        array(
+                        [
                             'VALUE'          => 'URI',
                             'X-ADDRESS'      => $this->location,
                             'X-APPLE-RADIUS' => 49,
                             'X-TITLE'        => $this->locationTitle,
-                        )
+                        ]
                     )
                 );
                 $propertyBag->set('GEO', $this->locationGeo);
@@ -293,9 +293,9 @@ class Event extends Component
                 new Property(
                     'X-ALT-DESC',
                     $this->descriptionHTML,
-                    array(
+                    [
                         'FMTTYPE' => 'text/html',
-                    )
+                    ]
                 )
             );
         }
@@ -534,7 +534,7 @@ class Event extends Component
      *
      * @return $this
      */
-    public function addAttendee($attendee, $params = array())
+    public function addAttendee($attendee, $params = [])
     {
         if (!isset($this->attendees)) {
             $this->attendees = new Attendees();

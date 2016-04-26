@@ -15,7 +15,7 @@ class DateUtil
 {
     public static function getDefaultParams(\DateTime $dateTime = null, $noTime = false, $useTimezone = false)
     {
-        $params = array();
+        $params = [];
 
         if ($useTimezone) {
             $timeZone       = $dateTime->getTimezone()->getName();

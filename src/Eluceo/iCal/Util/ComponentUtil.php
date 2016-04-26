@@ -26,7 +26,7 @@ class ComponentUtil
      */
     public static function fold($string)
     {
-        $lines = array();
+        $lines = [];
         $array = preg_split('/(?<!^)(?!$)/u', $string);
 
         $line   = '';
